@@ -134,24 +134,26 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <li>
+        <li <?=$this->uri->segment(1) == 'dashboard' || $this->uri->segment(1) == '' ? 'class="active"' : ''?>>
             <a href="<?=site_url('dashboard')?>"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
         </li>
-        <li>
+        <li <?=$this->uri->segment(1) == 'supplier' ? 'class="active"' : ''?>>
             <a href="<?=site_url('supplier')?>"><i class="fa fa-truck"></i> <span>Suplier</span></a>
         </li>
-        <li>
+        <li <?=$this->uri->segment(1) == 'customer' ? 'class="active"' : ''?>>
             <a href="<?=site_url('customer')?>"><i class="fa fa-user"></i> <span>Customer</span></a>
         </li>
-        <li class="treeview">
+        <li class="treeview <?=$this->uri->segment(1) == 'category' ||
+                                $this->uri->segment(1) == 'unit' ||
+                                $this->uri->segment(1) == 'item' ? 'active' : ''?>">
           <a href="#">
             <i class="fa fa-archive"></i><span>Product</span>
             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?=site_url('category')?>"><i class="fa fa-circle-o"></i> Categories</a></li>
-            <li><a href="<?=site_url('unit')?>"><i class="fa fa-circle-o"></i> Unit</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Item</a></li>
+            <li <?=$this->uri->segment(1) == 'category' ? 'class="active"' : ''?>><a href="<?=site_url('category')?>"><i class="fa fa-circle-o"></i> Categories</a></li>
+            <li <?=$this->uri->segment(1) == 'unit' ? 'class="active"' : ''?>><a href="<?=site_url('unit')?>"><i class="fa fa-circle-o"></i> Unit</a></li>
+            <li <?=$this->uri->segment(1) == 'item' ? 'class="active"' : ''?>><a href="<?=site_url('item')?>"><i class="fa fa-circle-o"></i> Item</a></li>
           </ul>
         </li>
         <li class="treeview">
