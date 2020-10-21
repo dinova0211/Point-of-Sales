@@ -10,7 +10,7 @@
 
     <!-- Main content -->
     <section class="content">
-
+        <?php $this->view('message') ?>
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title"><?=ucfirst($page)?> Item</h3>
@@ -23,8 +23,7 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-4 col-md-offset-4" >
-                        <?php //echo validation_errors(); ?>
-                        <form action="<?=site_url('item/process')?>" method="post">
+                        <?php echo form_open_multipart('item/process') ?>
                             <div class="form-group">
                                 <label>Barcode</label>
                                 <input type="hidden" name="id" value="<?=$row->item_id?>">
@@ -40,10 +39,10 @@
 
                             <div class="form-group">
                                 <label>Kategori</label>
-                                    <select name="category" class="form-control">
+                                    <select name="category" class="form-control" required>
                                         <option value=""> == Pilih == </option>
                                         <?php foreach($category->result() as $key => $data) { ?>
-                                            <option value="<?=$data->category_id?>"><?=$data->name?></option>}
+                                            <option value="<?=$data->category_id?>" <?=$data->category_id == $row->category_id ? "selected" : null?>><?=$data->name?></option>}
                                         <?php } ?>
                                     </select>
                                 
@@ -61,6 +60,19 @@
                                 
                             </div>
 
+                            <div class="form-group">
+                                <label>Gambar</label>
+                                <?php if ($page == 'edit') {
+                                    if ($row->image != null) { ?>
+                                        <div style="margin-buttom:5px">
+                                            <img src="<?=base_url('uploads/product/'.$row->image)?>" style="width:80%">
+                                        </div>
+                                        <?php
+                                    }
+                                } ?>
+                                <input type="file" name="image" class="form-control">
+                                <small>(Biarkan kosong jika tidak <?=$page == 'edit' ? 'ganti' : 'ada'?>)</small>
+                            </div>
                            
                             <div class="form-group">
                                 <button type="submit" name="<?=$page?>" class="btn btn-success btn-flat">
@@ -68,7 +80,7 @@
                                 </button>
                                 <button type="reset" class="btn btn-flat" >Reset</button>
                             </div>
-                        </form>
+                        <?php echo form_close() ?>
 
                     </div>
                 </div>

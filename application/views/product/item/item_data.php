@@ -27,6 +27,11 @@
                             <th>#</th>
                             <th>Barcode</th>
                             <th>Nama</th>
+                            <th>Kategori</th>
+                            <th>Unit</th>
+                            <th>Harga</th>
+                            <th>Stok</th>
+                            <th>Gambar</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -37,6 +42,17 @@
                             <td style="width:5%;"><?=$no++?></td>
                             <td><?=$data->barcode?></td>
                             <td><?=$data->name?></td>
+                            <td><?=$data->category_name?></td>
+                            <td><?=$data->unit_name?></td>
+                            <td><?=$data->price?></td>
+                            <td><?=$data->stock?></td>
+                            <td>
+                                <?php if ($data->image != null) { ?>
+                                    <img src="<?=base_url('uploads/product/'.$data->image)?>" style="width:50px">
+                                <?php } ?>
+                                
+                                    
+                                </td>
                             <td class="text-center" width="160px"> 
                                 <a href="<?=site_url('item/edit/'.$data->item_id)?>" class="btn btn-primary btn-xs">
                                    <i class="fa fa-pencil"></i>Edit
