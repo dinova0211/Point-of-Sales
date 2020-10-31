@@ -188,6 +188,13 @@ class Item extends CI_Controller {
 				$this->session->set_flashdata('success', 'Data Berhasil dihapus');
         }
         redirect('item'); //redirect
+
+	}
+
+	function barcode_qrcode($id)
+	{
+		$data['row'] = $this->item_m->get($id)->row();
+		$this->template->load('template', 'product/item/barcode_qrcode', $data);
 	}
 }
   
